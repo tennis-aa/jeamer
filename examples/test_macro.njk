@@ -1,0 +1,86 @@
+{% extends "revealjs_base.njk" %}
+{% set config = {
+  "controlsLayout": "bottom-right",
+  "progress": false,
+  "hash": true,
+  "navigationMode": "grid",
+  "controlsTutorial": false,
+  "center": false,
+  "width": 1280,
+  "height": 720
+  }
+%}
+{# {% set revealjs_url = "/revealjs" %} #}
+{# {% set theme = "white" %} #}
+{% set css = ["themes/fs.css","theorem.css", "column.css","bibliography_apa.css"] %}
+{% set title = "Presentation with Macros" %}
+{% set authors = ["Andres Alban"] %}
+{% set keywords = ["nice", "presentation"] %}
+
+{% from "theorem.njk" import theorem %}
+{% from "column.njk" import columns, column %}
+{% from "title.njk" import maketitle with context %}
+{% from "bibliography.njk" import bibliography, citep, citet, citealt, citefull %}
+
+{% macro section(title) %}
+<section>
+  <h1> {{ title }} </h1>
+  {{ caller() }}
+</section>
+{% endmacro %}
+
+{% block document %}
+
+  {{ maketitle() }}
+
+  <section>
+  {% call section("Macros") %}
+  <h2>sub macro</h2>
+  <h3>subsubmacro</h3>
+  <ul>
+    <li>First item</li>
+    <ul>
+      <li>subfirst item</li>
+      <ul>
+        <li>subsubfirst item</li>
+      </ul>
+    </ul>
+  </ul>
+  {% endcall %}
+
+  {% call section("Theorems") %}
+    {% call theorem(1,"incredible name") %}
+      An incredible theorem.
+    {% endcall%}
+  <br>
+    {% call theorem(1,"","proposition") %}
+      An incredible proposition.
+    {% endcall%}
+  {% endcall %}
+  </section>
+
+  {% call section("Columns") %}
+    Testing columns
+    {% call columns() %}
+      {% call column("30%") %}
+      First column with 30%
+      {% endcall %}
+
+      {% call column("70%") %}
+      Second column with 70%
+      {% endcall %}
+    {% endcall %}
+  {% endcall %}
+
+  {% call section("Citations") %}
+    <p>
+      The Tex book <span data-cite="texbook" data-citep>?</span>
+      was extended by {{ citet("latex2e") }}.
+      See also other resources (e.g., the Latex Companion by <span data-cite="latex:companion" data-citealt>?</span>).
+      {{ citefull("knuth:1984") }}
+    </p>
+  {% endcall %}
+
+  {{ bibliography("examples/biblio.bib") }}
+
+{% endblock %}

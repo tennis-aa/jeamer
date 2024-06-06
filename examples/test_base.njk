@@ -1,0 +1,42 @@
+{% extends "revealjs_base.njk" %}
+{% set config = {"controls": false,
+                 "controlsLayout": "edges",
+                 "progress": false,
+                 "hash": true,
+                 "navigationMode": "linear",
+                 "center": false,
+                 "width": 1280,
+                 "height": 720}
+%}
+{% set theme = "white" %}
+{% set css = ["test_base.css"] %}
+{% set plugins = ["notes","search","zoom","math"] %}
+{% set title = "My presentation" %}
+{% set authors = ["Andres Alban"] %}
+
+{% block document %}
+<section>
+  <section>
+    <h1>Some nice title</h1>
+    <p>Some nice text</p>
+    <aside class="notes">
+      Some nice notes
+    </aside>
+  </section>
+  <section>
+    <h2>Some vertical slide</h2>
+    <ul>
+      <li>A list</li>
+      <li>with many options</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h1>Some horizontal slide</h1>
+  <p>With formulas \(x\)</p>
+  \[
+    y = \sum_{i=0}^n \frac{1}{i}
+    \]
+</section>
+{% endblock %}

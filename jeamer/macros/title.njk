@@ -1,0 +1,24 @@
+{% macro maketitle() %}
+<section class="title-slide" style="height: 100%;">
+  <div style="display: flex; flex-direction:column; justify-content: center; height: 100%; text-align: center;">
+  {% if title %}
+    <h1 class="title-slide-title">{{ title }}</h1>
+  {% endif %}
+  {% if subtitle %}
+    <h3 class="title-slide-subtitle"> {{ subtitle }}</h3>
+  {% endif %}
+  {% for author in authors %}
+    <div class="title-slide-author">{{ author }}</div>
+  {% endfor %}
+  {% for institute in institutes %}
+    <div class="title-slide-institute">{{ institute }}</div>
+  {% endfor %}
+  {% if event %}
+    <div class="title-slide-event">{{ event }}</div>
+  {% endif %}
+  {% if date %}
+    <div class="title-slide-date">{{ date }}</div>
+  {% endif %}
+  </div>
+</section>
+{% endmacro %}

@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# html examples
+examples/*.html
+
+# for initial development
+package-lock.json

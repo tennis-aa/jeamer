@@ -1,0 +1,4 @@
+.column {
+  border: 3px solid var(--color2);
+  padding: 0 10px;
+}

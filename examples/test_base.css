@@ -1,0 +1,22 @@
+.reveal h1 {
+  background-color: blue;
+  border-radius: 20px;
+  text-transform: none;
+}
+
+.reveal h2 {
+  font-family: sans-serif;
+  text-transform: none;
+  background-color: #2222AA;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+li::marker {
+  color: green;
+}

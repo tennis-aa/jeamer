@@ -1,0 +1,6 @@
+{% macro theorem(n,name,type="theorem") %}
+<div class="theorem-container">
+  <div class="theorem-header"> {{ type | capitalize }} {{n}}{% if name %}: <span class="theorem-name">{{ name }}</span> {% endif %}</div>
+  <div class="theorem-content"> {{ caller() | trim }} </div>
+</div>
+{% endmacro %}

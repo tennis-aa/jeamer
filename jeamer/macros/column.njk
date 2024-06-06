@@ -1,0 +1,11 @@
+{% macro columns(gap="3%") %}
+<div style="display:flex; gap:{{ gap }}">
+{{ caller() }}
+</div>
+{% endmacro %}
+
+{% macro column(width) %}
+<div class="column" style="width:{{ width }}">
+{{ caller() }}
+</div>
+{% endmacro %}

@@ -1,0 +1,22 @@
+{
+  "name": "jeamer",
+  "version": "0.0.1",
+  "description": "Create slides in html using Nunjucks templates",
+  "main": "jeamer/render.js",
+  "bin": "jeamer/main.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "slides",
+    "template"
+  ],
+  "author": "Andres Alban",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "citation-js": "^0.7.12",
+    "js-beautify": "^1.15.1",
+    "nunjucks": "^3.2.4"
+  }
+}

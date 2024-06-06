@@ -1,0 +1,21 @@
+{% macro bibliography(bibfile, bibstyle="apa7") %}
+<section id="bibliography" data-bibfile="{{ bibfile }}" data-bibstyle="{{ bibstyle }}">
+  <h1>References</h1>
+</section>
+{% endmacro %}
+
+{% macro citep(ref) %}
+<a data-citep="true" data-cite="{{ ref }}"></a>
+{% endmacro %}
+
+{% macro citet(ref) %}
+<a data-citet="true" data-cite="{{ ref }}"></a>
+{% endmacro %}
+
+{% macro citealt(ref) %}
+<a data-citealt="true" data-cite="{{ ref }}"></a>
+{% endmacro %}
+
+{% macro citefull(ref) %}
+<span data-citefull="true" data-cite="{{ ref }}"></span>
+{% endmacro %}
