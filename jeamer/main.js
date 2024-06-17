@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const { render } = require(path.join(__dirname,'render.js'));
+import render from './render.js';
 
 const ifile = process.argv[2]
 let ofile;

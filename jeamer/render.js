@@ -1,11 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const nunjucks = require('nunjucks');
-const cheerio = require('cheerio');
-const beautify_html = require('js-beautify').html;
-const pkgDir = __dirname;
-const { addBiblio } = require(path.join(pkgDir, 'biblio.js'));
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import nunjucks from 'nunjucks';
+import cheerio from 'cheerio';
+import jsbeautify from 'js-beautify';
+const beautify_html = jsbeautify.html;
+import addBiblio from './biblio.js';
 
+const pkgDir = path.dirname(fileURLToPath(import.meta.url));
 const templateDir = path.join(pkgDir, 'templates');
 const macroDir = path.join(pkgDir, 'macros');
 
@@ -31,4 +33,4 @@ function render(ifile, ofile, format = null) {
     fs.writeFileSync(ofile, out, 'utf-8');
 }
 
-module.exports = { render };
+export default render;

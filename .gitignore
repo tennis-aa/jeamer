@@ -134,3 +134,6 @@ examples/*.html
 
 # for initial development
 package-lock.json
+
+# development
+.vscode/

@@ -1,6 +1,6 @@
-const fs = require('fs');
-const cheerio = require('cheerio');
-const Cite = require('citation-js');
+import fs from 'fs';
+import cheerio from 'cheerio';
+import Cite from 'citation-js';
 
 const dataCite = ["data-citep", "data-citet", "data-citealt"];
 
@@ -97,4 +97,4 @@ function addBiblio($) {
   return $;
 }
 
-module.exports = { addBiblio };
+export default addBiblio;
