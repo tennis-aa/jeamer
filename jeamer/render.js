@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import nunjucks from 'nunjucks';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import jsbeautify from 'js-beautify';
 const beautify_html = jsbeautify.html;
 import addBiblio from './biblio.js';
