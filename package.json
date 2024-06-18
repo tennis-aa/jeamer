@@ -19,6 +19,7 @@
     "@unified-latex/unified-latex-to-hast": "^1.7.1",
     "cheerio": "^1.0.0-rc.12",
     "citation-js": "^0.7.12",
+    "commander": "^12.1.0",
     "js-beautify": "^1.15.1",
     "nunjucks": "^3.2.4",
     "rehype-stringify": "^9.0.4"
