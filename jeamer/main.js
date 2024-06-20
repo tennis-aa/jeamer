@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const pkgDir = path.dirname(fileURLToPath(import.meta.url));
 import { Command } from 'commander';
 import render from './render.js';
 import { beamerToRevealjs } from './beamerToJeamer.js';
@@ -35,6 +38,16 @@ This utility is not robust and will likely require several manual adjustments af
     const tex = fs.readFileSync(ifile,"utf-8");
     const j = beamerToRevealjs(tex);
     fs.writeFileSync(options.output, j, "utf-8");
+  });
+
+program.command("init")
+  .description("Create a base template to start writing your own presentation.")
+  .option("-o, --output <output>", "name of the file for the slides")
+  .action((args,options) => {
+    if (options.output === undefined) {
+      options.output = "index.njk";
+    }
+    fs.copyFileSync(path.join(pkgDir,"templates","revealjs_base.njk"),options.output);
   });
 
 program.parse();
