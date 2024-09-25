@@ -1,5 +1,5 @@
 import render from '../jeamer/render.js'
-render("examples/test_macro.njk", "examples/test_macrojs.html","pretty")
+render("examples/test_macro.njk", "examples/test_macro.html","pretty")
 
 import { beamerToRevealjs } from '../jeamer/beamerToJeamer.js'
 import fs from "fs"

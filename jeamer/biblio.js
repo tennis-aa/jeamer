@@ -2,13 +2,13 @@ import fs from 'fs';
 import * as cheerio from 'cheerio';
 import Cite from 'citation-js';
 
-const dataCite = ["data-citep", "data-citet", "data-citealt"];
-
 function getCitations($) {
   const citationKeys = new Set();
 
   $("[data-cite]").each((i, el) => {
-    citationKeys.add($(el).attr("data-cite"));
+    let citations = $(el).attr("data-cite").split(",");
+    for (let j=0; j < citations.length; ++j)
+      citationKeys.add(citations[j].trim());
   });
 
   return Array.from(citationKeys);
@@ -52,23 +52,47 @@ function inTextStyle(cite) {
 
 function replaceInText($, entries) {
   $('[data-cite]').each((i, cite) => {
-    let entry = entries[$(cite).attr('data-cite')]
-    entry = entry ? entry[0] : "??";
+    let refs = $(cite).attr('data-cite').split(",").map(s => s.trim());
+    let refs_entry = [];
+    for (let j=0; j<refs.length; ++j) {
+      let entry = entries[refs[j]];
+      entry = entry ? entry[0] : "??";
+      refs_entry.push(entry);
+    }
     if ($(cite).attr('data-citet') !== undefined) {
-      const nameYear = entry === '??' ? ['?', '?'] : entry.split(', ');
-      $(cite).text(`${nameYear[0]} (${nameYear[1]})`);
+      let out = "";
+      for (let j=0; j<refs.length; ++j) {
+        let nameYear = refs_entry[j] === '??' ? ['?', '?'] : refs_entry[j].split(', ');
+        out += `${nameYear[0]} (${nameYear[1]}); `;
+      }
+      out = out.slice(0,-2);
+      $(cite).text(out);
       inTextStyle($(cite));
     }
     else if ($(cite).attr('data-citealt') !== undefined) {
-      $(cite).text(entry);
+      let out = "";
+      for (let j=0; j<refs.length; ++j) {
+        out += refs_entry[j] + "; ";
+      }
+      out = out.slice(0,-2);
+      $(cite).text(out);
       inTextStyle($(cite));
     }
-    else if ($(cite).attr('data-citefull')  !== undefined) {
-      if (entry !== "??") entry = cheerio.load(entries[$(cite).attr('data-cite')][1])("div div").html(); 
-      $(cite).html(entry);
+    else if ($(cite).attr('data-citefull') !== undefined) {
+      let out = "";
+      for (let j=0; j<refs.length; ++j) {
+        if (refs_entry[j] !== "??") out += cheerio.load(entries[refs[j]][1])("div div").html() + "; ";
+      }
+      out = out.slice(0,-2);
+      $(cite).html(out);
     }
     else { // ($(cite).attr('data-citep')) !== undefined or unspecified
-      $(cite).text(`(${entry})`);
+      let out = "";
+      for (let j=0; j<refs.length; ++j) {
+        out += refs_entry[j] + "; ";
+      }
+      out = out.slice(0,-2);
+      $(cite).text("(" + out + ")");
       inTextStyle($(cite));
     }
   });

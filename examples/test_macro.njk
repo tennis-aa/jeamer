@@ -81,6 +81,15 @@
     </p>
   {% endcall %}
 
+  {% call section("Citations multiple") %}
+    <p>
+      <span data-cite="texbook,knuth:1984" data-citep>?</span>
+      {{ citet("latex2e, latex:companion") }}.
+      <span data-cite="latex:companion, lesk:1977" data-citealt>?</span>
+      {{ citefull("knuth:1984, texbook") }}
+    </p>
+  {% endcall %}
+
   {{ bibliography("examples/biblio.bib") }}
 
 {% endblock %}
