@@ -1,5 +1,6 @@
 \documentclass{beamer}
 \usepackage{amsmath}
+\usepackage{natbib}
 
 \begin{document}
 
@@ -40,6 +41,25 @@ Display equation:
   \includegraphics{bluecheck.png}
   
   \includegraphics{bluecheck.png}
+\end{frame}
+
+\begin{frame}{cite}
+  \citep{texbook}
+
+  \citet{texbook}
+
+  \citealt{texbook}
+
+  \citep{knuth:1984,latex2e}
+
+  \citet{knuth:1984,latex2e}
+
+  \citealt{knuth:1984,latex2e}
+\end{frame}
+
+\begin{frame}{References}
+  \bibliographystyle{apalike}
+  \bibliography{examples/biblio}
 \end{frame}
 
 \end{document}

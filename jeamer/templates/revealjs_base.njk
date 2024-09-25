@@ -13,6 +13,11 @@
 {% set title = "Presentation title" %}
 {% set authors = ["Authors' names"] %}
 
+{% from "theorem.njk" import theorem %}
+{% from "column.njk" import columns, column %}
+{% from "title.njk" import maketitle with context %}
+{% from "bibliography.njk" import bibliography, citep, citet, citealt, citefull %}
+
 {% block document %}
 {# insert slides here #}
 {% endblock %}
