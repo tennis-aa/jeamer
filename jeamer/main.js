@@ -8,13 +8,15 @@ import { Command } from 'commander';
 import render from './render.js';
 import { beamerToRevealjs } from './beamerToJeamer.js';
 
-const program = new Command();
+const program = new Command().name("jeamer")
+  .description("Create html slides with Nunjucks templates");
 
-program.name("jeamer")
-  .description("Create html slides from Nunjucks templates")
+
+program.command("render", { isDefault: true })
+  .description("(default command) Create html slides with Nunjucks templates.")
   .argument("<input>", "Input file")
-  .option("-o, --output <output>", "Output file")
-  .option("-p, --pretty", "Pretty print")
+  .option("-o, --output <file>", "output file")
+  .option("-p, --pretty", "pretty print")
   .action((ifile,options) => {
     if (options.output === undefined) {
       let fileParts = ifile.split(".");
@@ -25,10 +27,10 @@ program.name("jeamer")
   });
 
 program.command("frombeamer")
-  .description(`Convert a beamer (latex) source file into a template to be used with jeamer. 
-This utility is not robust and will likely require several manual adjustments after conversion.`)
-  .argument("<input>", "Input file")
-  .option("-o, --output <output>", "Output file")
+  .description(`convert a beamer (latex) source file into a template to be used with jeamer 
+(this utility is not robust and will likely require several manual adjustments after conversion)`)
+  .argument("<input>", "input file")
+  .option("-o, --output <file>", "output file")
   .action((ifile,options) => {
     if (options.output === undefined) {
       let fileParts = ifile.split(".");
@@ -41,12 +43,9 @@ This utility is not robust and will likely require several manual adjustments af
   });
 
 program.command("init")
-  .description("Create a base template to start writing your own presentation.")
-  .option("-o, --output <output>", "name of the file for the slides")
-  .action((args,options) => {
-    if (options.output === undefined) {
-      options.output = "index.njk";
-    }
+  .description("create a base template to start writing your own presentation")
+  .option("-o, --output <file>", "name of the file for the slides", "index.njk")
+  .action(options => {
     fs.copyFileSync(path.join(pkgDir,"templates","revealjs_base.njk"),options.output);
   });
 
