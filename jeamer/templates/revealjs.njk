@@ -36,28 +36,33 @@
   <script src="{{ revealjs_url }}/dist/reveal.js"></script>
 
   <!-- reveal.js plugins -->
-  {% for p in plugins %}
-  <script src="{{ revealjs_url }}/plugin/{{p}}/{{p}}.js"></script>
+  {% for plugin in plugins %}
+    {% set p = plugin if plugin | is_string else plugin["name"] %}
+  <script src="{{ revealjs_url }}/plugin/{{ p }}/{{ p }}.js"></script>
   {% endfor %}
   {% for s in scripts %}
   <script src="{{s}}"></script>
   {% endfor %}
 
   <script>
-
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      let config = {{config | dump}}
+      let config = {{ config | dump }};
       // reveal.js plugins
-      config["plugins"] =  [
+      config["plugins"] = config["plugins"] || [];
+      config["plugins"] = config["plugins"].concat([
         {% for p in plugins %}
+          {% if p | is_string %}
         Reveal{{ p | capitalize }},
+          {% else %}
+        Reveal{{ p["name"] | capitalize }}.{{ p["extension"] }}
+          {% endif %}
         {% endfor %}
-      ]
+      ]);
 
       Reveal.initialize(
         config
-      )
+      );
     </script>
   </body>
 </html>

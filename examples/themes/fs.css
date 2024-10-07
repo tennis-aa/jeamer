@@ -12,12 +12,12 @@
 *********************************************/
 :root {
   --r-background-color: #fff;
-  --r-main-font: "Source Sans 3", sans-serif;
+  --r-main-font: "Lato", sans-serif;
   --r-main-font-size: 42px;
   --r-main-text-color: #1d1d1b;
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: "Source Sans 3", sans-serif;
+  --r-heading-font: "Lato", sans-serif;
   --r-heading-color: #fff;
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;

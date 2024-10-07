@@ -17,6 +17,10 @@ const env = new nunjucks.Environment(
     { trimBlocks: true, lstripBlocks: true, autoescape: false }
 );
 
+env.addFilter('is_string', function(obj) {
+    return typeof obj == 'string';
+});
+
 const variables = {
     lang: "en",
     revealjs_url: "https://unpkg.com/reveal.js@^4",
