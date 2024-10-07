@@ -93,7 +93,7 @@ function beamerToHTML(s) {
 }
 
 export function beamerToRevealjs(s) {
-  const html = beautify_html(beamerToHTML(s));
+  const html = beautify_html(beamerToHTML(s), {"indent-size": 2});
   let j = fs.readFileSync(path.join(pkgDir,"templates", "revealjs_base.njk"), "utf-8");
   j = j.replace("{# insert slides here #}", html);
   return j;
