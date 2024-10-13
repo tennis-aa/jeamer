@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const pkgDir = path.dirname(fileURLToPath(import.meta.url));
 import { unified } from "unified";
-import { unifiedLatexFromString} from "@unified-latex/unified-latex-util-parse";
+import { unifiedLatexFromString } from "@unified-latex/unified-latex-util-parse";
 import { unifiedLatexToHast } from "@unified-latex/unified-latex-to-hast";
 import { htmlLike } from "@unified-latex/unified-latex-util-html-like";
 import { getArgsContent } from "@unified-latex/unified-latex-util-arguments";
@@ -21,15 +21,15 @@ const processor1 = unified()
       bibliography: { signature: "m" }
     }
   })
-  .use(unifiedLatexToHast,{
+  .use(unifiedLatexToHast, {
     macroReplacements: {
       section: (node) => {
-          const args = getArgsContent(node).findLast((x)=>x!==null);
-          const title = printRaw(args);
-          return htmlLike({
-              tag: "div",
-              attributes: { "data-title": title },
-          });
+        const args = getArgsContent(node).findLast((x) => x !== null);
+        const title = printRaw(args);
+        return htmlLike({
+          tag: "div",
+          attributes: { "data-title": title },
+        });
       },
       citep: (node) => {
         const args = getArgsContent(node);
@@ -59,14 +59,16 @@ const processor1 = unified()
           content: '{{ bibliography("' + printRaw(args[args.length - 1]) + '.bib") }}'
         };
       },
-      titlepage: () => { return {
-        type: "string",
-        content: "{{ maketitle() }}"
-      };},
+      titlepage: () => {
+        return {
+          type: "string",
+          content: "{{ maketitle() }}"
+        };
+      },
     },
     environmentReplacements: {
       frame: (node) => {
-        let args = getArgsContent(node).findLast((x)=>x!==null);
+        let args = getArgsContent(node).findLast((x) => x !== null);
         node.content.unshift(htmlLike({
           tag: "h1",
           content: args
@@ -93,8 +95,8 @@ function beamerToHTML(s) {
 }
 
 export function beamerToRevealjs(s) {
-  const html = beautify_html(beamerToHTML(s), {"indent-size": 2});
-  let j = fs.readFileSync(path.join(pkgDir,"templates", "revealjs_base.njk"), "utf-8");
+  const html = beautify_html(beamerToHTML(s), { "indent-size": 2 });
+  let j = fs.readFileSync(path.join(pkgDir, "templates", "revealjs_base.njk"), "utf-8");
   j = j.replace("{# insert slides here #}", html);
   return j;
 }

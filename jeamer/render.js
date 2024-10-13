@@ -13,11 +13,11 @@ const macroDir = path.join(pkgDir, 'macros');
 
 // Configure Nunjucks environment
 const env = new nunjucks.Environment(
-    new nunjucks.FileSystemLoader([ ".", templateDir, macroDir ]),
+    new nunjucks.FileSystemLoader([".", templateDir, macroDir]),
     { trimBlocks: true, lstripBlocks: true, autoescape: false }
 );
 
-env.addFilter('is_string', function(obj) {
+env.addFilter('is_string', function (obj) {
     return typeof obj == 'string';
 });
 
@@ -32,7 +32,7 @@ function render(ifile, ofile, format = null) {
     const $ = cheerio.load(result);
     addBiblio($);
     let out;
-    if (format === "pretty") out = beautify_html($.html(),{"indent-size":2});
+    if (format === "pretty") out = beautify_html($.html(), { "indent-size": 2 });
     else out = $.html();
     fs.writeFileSync(ofile, out, 'utf-8');
 }
