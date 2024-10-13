@@ -1,5 +1,5 @@
-{% macro bibliography(bibfile, bibstyle="apa7") %}
-<section id="bibliography" data-bibfile="{{ bibfile }}" data-bibstyle="{{ bibstyle }}">
+{% macro bibliography(bibfile, bibstyle="apa7", perpage=5) %}
+<section id="bibliography" data-bibfile="{{ bibfile }}" data-bibstyle="{{ bibstyle }}" data-perpage="{{ perpage }}">
   <h1>References</h1>
 </section>
 {% endmacro %}

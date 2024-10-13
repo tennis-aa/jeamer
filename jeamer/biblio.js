@@ -37,10 +37,16 @@ function buildBibliography(citations, bibliofile) {
 
 function mergeBiblio($, entriesHtml) {
   const bibSection = $('section#bibliography');
+  const perpage = bibSection.attr('data-perpage') || 5;
 
-  entriesHtml.forEach(entry => {
+  let section;
+  entriesHtml.forEach((entry, index) => {
+    if (index % perpage === 0) {
+      section = $('<section>').addClass('bibliography-section');
+      bibSection.append(section);
+    }
     const div = $('<div>').addClass('bibliography-entry').html(entry[1]);
-    bibSection.append(div);
+    section.append(div);
   });
 
   return $;
