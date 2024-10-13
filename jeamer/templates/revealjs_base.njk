@@ -7,11 +7,12 @@
                  "width": 1280,
                  "height": 720}
 %}
+{% set plugins = ["notes","search","zoom","math"] %}
 {% set theme = "white" %}
 {% set css = [] %}
-{% set plugins = ["notes","search","zoom","math"] %}
 {% set title = "Presentation title" %}
-{% set authors = ["Authors' names"] %}
+{% set shorttitle = "short title"%}
+{% set authors = {"short name": "long name", "short name2": "long name2"} %}
 
 {% from "theorem.njk" import theorem %}
 {% from "column.njk" import columns, column %}

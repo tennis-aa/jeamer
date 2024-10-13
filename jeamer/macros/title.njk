@@ -7,12 +7,16 @@
   {% if subtitle %}
     <h3 class="title-slide-subtitle"> {{ subtitle }}</h3>
   {% endif %}
-  {% for author in authors %}
+  <div class="title-slide-authorlist">
+  {% for _, author in authors %}
     <div class="title-slide-author">{{ author }}</div>
   {% endfor %}
+  </div>
+  <div class="title-slide-institutelist">
   {% for institute in institutes %}
     <div class="title-slide-institute">{{ institute }}</div>
   {% endfor %}
+  </div>
   {% if event %}
     <div class="title-slide-event">{{ event }}</div>
   {% endif %}

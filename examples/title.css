@@ -1,0 +1,19 @@
+.title-slide-authorlist {
+  display: flex;
+  padding: 20px 0;
+}
+
+.title-slide-author {
+  flex-grow: 1;
+}
+
+.title-slide-institutelist {
+  display: flex;
+  padding: 20px 0;
+  font-size: 0.9em;
+}
+
+
+.title-slide-institute {
+  flex-grow: 1;
+}

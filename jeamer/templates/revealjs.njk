@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="jeamer">
   {% if authors %}
-  <meta name="author" content="{{ authors }}">
+  <meta name="author" content="{% for author, _ in authors %}{{ author }} {% endfor %}">
   {% endif %}
   {% if date %}
   <meta name="dcterms.date" content="{{ date }}">
@@ -12,7 +12,7 @@
   {% if keywords %}
   <meta name="keywords" content="{% for k in keywords %}{{ k }},{% endfor %}">
   {% endif %}
-  <title>{% if(title) %} {{ title }} {% endif %}</title>
+  <title>{% if shorttitle %} {{ shorttitle }}{% elif title %} {{ title }} {% endif %}</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
