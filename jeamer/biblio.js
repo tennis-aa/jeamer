@@ -43,6 +43,7 @@ function mergeBiblio($, entriesHtml) {
   entriesHtml.forEach((entry, index) => {
     if (index % perpage === 0) {
       section = $('<section>').addClass('bibliography-section');
+      section.append($('<h1>').text('References'));
       bibSection.append(section);
     }
     const div = $('<div>').addClass('bibliography-entry').html(entry[1]);
